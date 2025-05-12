@@ -27,7 +27,7 @@ bot.onText(/\/start/, (msg) => {
         [
           {
             text: 'Перейти в игру',
-            web_app: { url: 'https://your-app-name.herokuapp.com' }  // Замените на ваш URL
+            web_app: { url: 'https://savageswag.github.io/trollface-clicker/' }  // Замените на ваш URL
           }
         ]
       ]
