@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trollface Clicker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Главная страница -->
+  <div id="main-screen" class="screen">
+    <h1 id="title">Troll Clicker</h1>
+    <button id="start-button">Начать троллить!</button>
+  </div>
+
+  <!-- Игровой экран -->
+  <div id="game-screen" class="screen" style="display:none;">
+    <h1 id="click-counter">0 Troll Coin</h1>
+    <!-- Картинка внутри кнопки -->
+    <button id="trollfacemainbutton-button" class="trollface-container">
+      <img id="trollface" src="trollfacemainbutton.png" alt="Trollface" />
+    </button>
+
+    <!-- Кнопка магазина -->
+    <button id="shop-button">Магазин</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

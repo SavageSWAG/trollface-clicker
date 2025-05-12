@@ -1,0 +1,209 @@
+/* Базовые стили */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #4B0082, #8a2be2); /* Градиентный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative; /* Для правильного позиционирования */
+}
+
+.app-container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: bold;
+  animation: textDeform 4s infinite alternate ease-in-out; /* Анимация деформации текста */
+  z-index: 1;
+}
+
+@keyframes textDeform {
+  0% {
+    transform: scale(1) rotate(0deg);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Анимация кнопки при нажатии */
+button {
+  margin-top: 20px;
+  padding: 16px 32px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ff6347;
+  color: white;
+  border: 2px solid #ff6347;
+  border-radius: 12px;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Убираем hover для обычных кнопок */
+button:active {
+  transform: scale(0.95);
+}
+
+/* Контейнер для картинки */
+.trollface-container {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;  /* Курсор при наведении */
+  width: 140px;      /* Фиксированная ширина */
+  height: 120px;     /* Фиксированная высота */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  outline: none; /* Убираем обводку */
+}
+
+/* Стили для картинки внутри контейнера */
+#trollface {
+  height: 100%;   /* Картинка займет весь контейнер */
+  object-fit: cover; /* Чтобы картинка не растягивалась */
+  border-radius: 0%; /* Убираем обрезку по кругу */
+  transition: transform 0.2s ease; /* Анимация нажатия */
+}
+
+/* Анимация нажатия */
+.trollface-container:hover #trollface {
+  transform: scale(1.1);  /* Увеличение картинки при наведении */
+}
+
+button:active #trollface {
+  transform: scale(0.95);  /* Вдавливание картинки при нажатии */
+}
+
+/* Стиль для экрана */
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Анимация для плавного появления экрана */
+#main-screen {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Анимация для движения картинки */
+@keyframes moveTrollface {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: random;
+    left: random;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Стили для кнопки магазина */
+#shop-button {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  padding: 10px 20px;
+  background-color: #8a2be2;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Добавляем анимацию */
+}
+
+/* Эффект hover для кнопки магазина */
+#shop-button:hover {
+  background-color: #4B0082;
+  transform: scale(1.1); /* Увеличение кнопки при наведении */
+}
+
+/* Эффект active для кнопки магазина */
+#shop-button:active {
+  transform: scale(0.95); /* Вдавливание кнопки при нажатии */
+}
+
+/* Адаптивность */
+
+/* Для экранов шириной меньше 768px (планшеты и мобильные устройства) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem; /* Меньший размер шрифта для заголовка */
+  }
+
+  button {
+    font-size: 18px; /* Меньший размер шрифта для кнопки */
+    padding: 12px 24px; /* Уменьшаем размер кнопок */
+  }
+
+  .trollface-container {
+    width: 100px; /* Уменьшаем размер контейнера */
+    height: 100px; /* Уменьшаем высоту */
+  }
+
+  #trollface {
+    width: 100%; /* Картинка остается адаптивной */
+    height: 100%;
+  }
+
+  #shop-button {
+    padding: 8px 16px; /* Уменьшаем размеры кнопки магазина */
+    font-size: 14px; /* Уменьшаем размер текста */
+  }
+}
+
+/* Для экранов шириной меньше 480px (мобильные устройства) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem; /* Меньший размер шрифта для мобильных устройств */
+  }
+
+  button {
+    font-size: 16px; /* Уменьшаем размер шрифта для кнопки */
+    padding: 10px 20px; /* Уменьшаем размеры кнопки */
+  }
+
+  .trollface-container {
+    width: 80px; /* Еще меньше размер контейнера */
+    height: 80px; /* Еще меньше высота */
+  }
+
+  #shop-button {
+    padding: 6px 12px; /* Еще меньше кнопка магазина */
+    font-size: 12px; /* Еще меньше размер текста */
+  }
+}
