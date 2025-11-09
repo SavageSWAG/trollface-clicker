@@ -62,27 +62,33 @@ button:active {
   transform: scale(0.95);
 }
 
-/* Контейнер для картинки */
+/* ФИКС: Контейнер для картинки - адаптивный */
 .trollface-container {
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;  /* Курсор при наведении */
-  width: 140px;      /* Фиксированная ширина */
-  height: 120px;     /* Фиксированная высота */
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  outline: none; /* Убираем обводку */
+  outline: none;
+  width: auto; /* Убираем фиксированную ширину */
+  height: auto; /* Убираем фиксированную высоту */
+  max-width: 90vw; /* Максимум 90% ширины экрана */
+  max-height: 50vh; /* Максимум 50% высоты экрана */
+  margin: 20px 0;
 }
 
-/* Стили для картинки внутри контейнера */
+/* ФИКС: Стили для картинки - адаптивные */
 #trollface {
-  height: 100%;   /* Картинка займет весь контейнер */
-  object-fit: cover; /* Чтобы картинка не растягивалась */
-  border-radius: 0%; /* Убираем обрезку по кругу */
-  transition: transform 0.2s ease; /* Анимация нажатия */
+  width: auto; /* Автоматическая ширина */
+  height: auto; /* Автоматическая высота */
+  max-width: 100%; /* Не больше ширины контейнера */
+  max-height: 100%; /* Не больше высоты контейнера */
+  object-fit: contain; /* ВАЖНО: сохраняет пропорции, не обрезает */
+  border-radius: 0%;
+  transition: transform 0.2s ease;
 }
 
 /* Анимация нажатия */
@@ -94,7 +100,7 @@ button:active #trollface {
   transform: scale(0.95);  /* Вдавливание картинки при нажатии */
 }
 
-/* Стиль для экрана */
+/* ФИКС: Стиль для экрана - добавляем отступы */
 .screen {
   display: flex;
   justify-content: center;
@@ -103,6 +109,8 @@ button:active #trollface {
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 20px; /* Добавляем отступы */
+  box-sizing: border-box; /* Чтобы padding не ломал размеры */
 }
 
 /* Анимация для плавного появления экрана */
@@ -157,6 +165,16 @@ button:active #trollface {
   transform: scale(0.95); /* Вдавливание кнопки при нажатии */
 }
 
+/* ФИКС: Адаптивность для счетчика кликов */
+#click-counter {
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Адаптивный размер шрифта */
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* Адаптивность */
 
 /* Для экранов шириной меньше 768px (планшеты и мобильные устройства) */
@@ -171,11 +189,12 @@ button:active #trollface {
   }
 
   .trollface-container {
-    width: 100px; /* Уменьшаем размер контейнера */
-    height: 100px; /* Уменьшаем высоту */
+    max-width: 85vw; /* Увеличиваем максимальную ширину */
+    max-height: 45vh; /* Увеличиваем максимальную высоту */
+    margin: 15px 0;
   }
 
-  #trollface {
+    #trollface {
     width: 100%; /* Картинка остается адаптивной */
     height: 100%;
   }
@@ -183,6 +202,11 @@ button:active #trollface {
   #shop-button {
     padding: 8px 16px; /* Уменьшаем размеры кнопки магазина */
     font-size: 14px; /* Уменьшаем размер текста */
+  }
+
+  #click-counter {
+    font-size: clamp(1.2rem, 5vw, 2rem); /* Более адаптивный размер */
+    margin-bottom: 15px;
   }
 }
 
@@ -198,12 +222,48 @@ button:active #trollface {
   }
 
   .trollface-container {
-    width: 80px; /* Еще меньше размер контейнера */
-    height: 80px; /* Еще меньше высота */
+    max-width: 90vw; /* Еще больше на мобильных */
+    max-height: 40vh; /* Немного меньше высоты */
+    margin: 10px 0;
+  }
+
+  .screen {
+    padding: 15px; /* Меньше отступы на мобильных */
   }
 
   #shop-button {
     padding: 6px 12px; /* Еще меньше кнопка магазина */
     font-size: 12px; /* Еще меньше размер текста */
+    left: 10px;
+    bottom: 10px;
   }
+
+  #click-counter {
+    font-size: clamp(1rem, 6vw, 1.5rem);
+    margin-bottom: 10px;
+  }
+}
+
+/* ФИКС: Для очень маленьких экранов по высоте */
+@media (max-height: 600px) {
+  .trollface-container {
+    max-height: 35vh; /* Меньше высота на маленьких экранах */
+  }
+  
+  .screen {
+    padding: 10px;
+    justify-content: space-around; /* Равномерное распределение */
+  }
+  
+  #click-counter {
+    margin-bottom: 5px;
+  }
+}
+
+/* ФИКС: Гарантируем, что HTML и body занимают всю высоту */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
