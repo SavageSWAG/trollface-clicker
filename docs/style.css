@@ -97,13 +97,13 @@ button:active {
   max-height: 50vh; /* Максимум 50% высоты экрана */
   margin: 20px 0;
   
-  /* ФИКСЫ ДЛЯ МОБИЛЬНЫХ */
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  /* ФИКСЫ ДЛЯ МОБИЛЬНЫХ - УБИРАЕМ ВЫДЕЛЕНИЕ */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
   touch-action: manipulation;
   
   /* ФИКС: Убираем стандартные стили кнопки */
@@ -141,6 +141,14 @@ button:active {
 .trollface-container:active #trollface {
   transform: scale(0.95);  /* Вдавливание картинки при нажатии */
   transition: transform 0.05s ease; /* Очень быстрая анимация */
+}
+
+/* ФИКС: Убираем любые следы выделения при активном состоянии */
+.trollface-container:active,
+.trollface-container:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* ФИКС: Стиль для экрана - добавляем отступы */
@@ -201,8 +209,6 @@ button:active {
   -webkit-tap-highlight-color: rgba(138, 43, 226, 0.3);
   touch-action: manipulation;
   z-index: 1000;
-  transition: background-color 0.3s, transform 0.2s; /* Добавляем анимацию */
-  
 }
 
 /* Эффект hover для кнопки магазина */
@@ -342,6 +348,14 @@ html, body {
   padding: 0;
   overflow: hidden;
 }
+
+/* Дополнительный фикс для iOS */
+@supports (-webkit-touch-callout: none) {
+  .trollface-container {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -539,15 +553,12 @@ html, body {
   border-radius: 50%;
 }
 
-
 /* Адаптивность для магазина */
 @media (max-width: 480px) {
   .balance-icon {
     width: 20px;
     height: 20px;
   }
-
-  
   
   .shop-item {
     flex-direction: column;
@@ -570,7 +581,6 @@ html, body {
     width: 18px;
     height: 18px;
   }
-
 }
 
 /* Стили для всплывающего уведомления */
