@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-image"></div>
   <!-- Главная страница -->
   <div id="main-screen" class="screen">
     <h1 id="title">Troll Clicker</h1>
@@ -18,12 +19,82 @@
     <h1 id="click-counter">0 Troll Coin</h1>
     <!-- Картинка внутри кнопки -->
     <button id="trollfacemainbutton-button" class="trollface-container">
-      <img id="trollface" src="trollfacemainbutton.jpg" alt="Trollface" />
+      <img id="trollface" src="trollfacemainbutton.png" alt="Trollface" />
     </button>
 
     <!-- Кнопка магазина -->
     <button id="shop-button">Магазин</button>
   </div>
+
+ <!-- Модальное окно магазина -->
+  <div id="shop-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Магазин Тролля</h2>
+        <button id="close-shop" class="close-button">&times;</button>
+      </div>
+      <div class="shop-items">
+  <div class="shop-item" data-price="10">
+    <div class="item-info">
+      <span class="item-name">Усиленный клик</span>
+      <span class="item-description">+1 монета за клик</span>
+    </div>
+    <button class="buy-button">
+      <span class="buy-price">
+        <img src="trollfacemainbutton.png" alt="Coin" class="price-icon">
+        10
+      </span>
+      Купить
+    </button>
+  </div>
+  
+  <div class="shop-item" data-price="35">
+    <div class="item-info">
+      <span class="item-name">Авто-кликер</span>
+      <span class="item-description">Автоматические клики</span>
+    </div>
+    <button class="buy-button">
+      <span class="buy-price">
+        <img src="trollfacemainbutton.png" alt="Coin" class="price-icon">
+        35
+      </span>
+      Купить
+    </button>
+  </div>
+  
+  <div class="shop-item" data-price="100">
+    <div class="item-info">
+      <span class="item-name">Тролль-мегаусиление</span>
+      <span class="item-description">x2 ко всем кликам</span>
+    </div>
+    <button class="buy-button">
+      <span class="buy-price">
+        <img src="trollfacemainbutton.png" alt="Coin" class="price-icon">
+        100
+      </span>
+      Купить
+    </button>
+  </div>
+  <!-- Всплывающее окно покупки -->
+<div id="purchase-toast" class="toast" style="display:none;">
+  <div class="toast-content">
+    <span class="toast-message">Покупка совершена!</span>
+    <button class="toast-close">&times;</button>
+  </div>
+</div>
+</div>
+      <div class="balance-info">
+  Ваш баланс: 
+  <span id="shop-balance">0</span> 
+  <img src="trollfacemainbutton.png" alt="Troll Coin" class="balance-icon">
+  
+</div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
   <script src="app.js"></script>
 </body>
