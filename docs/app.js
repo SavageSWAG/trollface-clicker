@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const toastClose = document.querySelector('.toast-close');
 
   let clickCount = 0;
-  let canClick = true;
   let toastTimeout;
 
   // Обработчик для кнопки "Начать троллить"
@@ -25,19 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
     gameScreen.style.display = 'flex';
   });
 
-  // Обработчик клика по троллфейсу
+  // ФИКС: Обработчик клика по троллфейсу - убрали задержку
   trollfaceButton.addEventListener('click', () => {
-    if (canClick) {
-      canClick = false;
-      clickCount++;
-      updateCounter();
-      updateShopBalance();
-      
-      setTimeout(() => {
-        canClick = true;
-      }, 50);
-    }
+    clickCount++;
+    updateCounter();
+    updateShopBalance();
   });
+
+  // ФИКС: Обработчик для мобильных устройств
+  trollfaceButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    clickCount++;
+    updateCounter();
+    updateShopBalance();
+  }, { passive: false });
 
   // Функция обновления счетчика
   function updateCounter() {
