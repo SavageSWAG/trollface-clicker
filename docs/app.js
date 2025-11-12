@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let clickCount = 0;
   let toastTimeout;
+  let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   // Обработчик для кнопки "Начать троллить"
   startButton.addEventListener('click', () => {
@@ -24,20 +25,23 @@ document.addEventListener('DOMContentLoaded', function () {
     gameScreen.style.display = 'flex';
   });
 
-  // ФИКС: Обработчик клика по троллфейсу - убрали задержку
-  trollfaceButton.addEventListener('click', () => {
+  // ФИКС: Единый обработчик для всех устройств
+  function handleTrollfaceClick() {
     clickCount++;
     updateCounter();
     updateShopBalance();
-  });
+  }
 
-  // ФИКС: Обработчик для мобильных устройств
-  trollfaceButton.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    clickCount++;
-    updateCounter();
-    updateShopBalance();
-  }, { passive: false });
+  // Для тач-устройств используем только touchstart
+  if (isTouchDevice) {
+    trollfaceButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleTrollfaceClick();
+    }, { passive: false });
+  } else {
+    // Для десктопов используем click
+    trollfaceButton.addEventListener('click', handleTrollfaceClick);
+  }
 
   // Функция обновления счетчика
   function updateCounter() {
@@ -130,9 +134,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Показываем красивое уведомление вместо alert
         showPurchaseToast(itemName);
-        
-        // Здесь можно добавить логику применения покупки
-        // Например: applyPurchase(itemName);
       }
     });
   });
